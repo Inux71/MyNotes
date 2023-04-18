@@ -11,6 +11,9 @@
 		CC7943CC29DC3E20009352D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7943CB29DC3E20009352D8 /* ContentView.swift */; };
 		CC7943CE29DC3E21009352D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7943CD29DC3E21009352D8 /* Assets.xcassets */; };
 		CC7943D129DC3E21009352D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7943D029DC3E21009352D8 /* Preview Assets.xcassets */; };
+		CCC6473029EEB85C003060BF /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6472F29EEB85C003060BF /* NoteListView.swift */; };
+		CCC6473229EEB88B003060BF /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6473129EEB88B003060BF /* AddNoteView.swift */; };
+		CCC6473429EEB8AF003060BF /* NoteEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6473329EEB8AF003060BF /* NoteEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		CC7943CB29DC3E20009352D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CC7943CD29DC3E21009352D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC7943D029DC3E21009352D8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CCC6472F29EEB85C003060BF /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
+		CCC6473129EEB88B003060BF /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
+		CCC6473329EEB8AF003060BF /* NoteEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +57,7 @@
 		CC7943C829DC3E20009352D8 /* MyNotes */ = {
 			isa = PBXGroup;
 			children = (
+				CCC6472E29EEB84B003060BF /* view */,
 				CC7943C929DC3E20009352D8 /* MyNotesApp.swift */,
 				CC7943CB29DC3E20009352D8 /* ContentView.swift */,
 				CC7943CD29DC3E21009352D8 /* Assets.xcassets */,
@@ -65,6 +72,16 @@
 				CC7943D029DC3E21009352D8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CCC6472E29EEB84B003060BF /* view */ = {
+			isa = PBXGroup;
+			children = (
+				CCC6472F29EEB85C003060BF /* NoteListView.swift */,
+				CCC6473129EEB88B003060BF /* AddNoteView.swift */,
+				CCC6473329EEB8AF003060BF /* NoteEditView.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +156,9 @@
 			files = (
 				CC7943CC29DC3E20009352D8 /* ContentView.swift in Sources */,
 				CC7943CA29DC3E20009352D8 /* MyNotesApp.swift in Sources */,
+				CCC6473229EEB88B003060BF /* AddNoteView.swift in Sources */,
+				CCC6473029EEB85C003060BF /* NoteListView.swift in Sources */,
+				CCC6473429EEB8AF003060BF /* NoteEditView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +287,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyNotes/Preview Content\"";
+				DEVELOPMENT_TEAM = DD777FUNST;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -295,6 +316,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyNotes/Preview Content\"";
+				DEVELOPMENT_TEAM = DD777FUNST;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
