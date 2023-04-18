@@ -9,22 +9,19 @@ import SwiftUI
 
 struct NoteListView: View {
     @State private var _search: String = "";
-    var onNavigateToAddNoteView: () -> Void
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                List{
-                    NavigationLink("Test", value: "edit")
-                }
+        VStack {
+            List{
+                NavigationLink("Test", value: "edit")
             }
-            .navigationTitle("Notatki")
-            .navigationBarTitleDisplayMode(.large)
-            .searchable(text: $_search)
-            .toolbar {
-                Button(action: {}) {
-                    Image(systemName: "doc.badge.plus")
-                }
+        }
+        .navigationTitle("Notatki")
+        .navigationBarTitleDisplayMode(.large)
+        .searchable(text: $_search)
+        .toolbar {
+            NavigationLink(value: "add") {
+                Image(systemName: "doc.badge.plus")
             }
         }
     }
@@ -35,8 +32,3 @@ struct NodeListView_Preview: PreviewProvider {
         NoteEditView()
     }
 }
-
-//enum NavigationTest {
-//    EditNote(test: String)
-//    
-//}

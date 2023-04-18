@@ -14,11 +14,7 @@ struct MyNotesApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: self.$_path) {
-                NoteListView(
-                    onNavigateToAddNoteView: {
-                        self._path.append("add")
-                    }
-                )
+                NoteListView()
                     .navigationDestination(for: String.self) { destination in
                         self.getView(for: destination)
                     }
@@ -28,12 +24,12 @@ struct MyNotesApp: App {
     
     private func getView(for destination: String) -> AnyView {
         switch destination {
-        case "add":
-            return AnyView(AddNoteView())
-        case "edit":
-            return AnyView(NoteEditView())
-        default:
-            return AnyView(EmptyView())
+            case "add":
+                return AnyView(AddNoteView())
+            case "edit":
+                return AnyView(NoteEditView())
+            default:
+                return AnyView(EmptyView())
         }
         
     }
