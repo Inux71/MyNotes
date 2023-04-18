@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CC7943CA29DC3E20009352D8 /* MyNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7943C929DC3E20009352D8 /* MyNotesApp.swift */; };
-		CC7943CC29DC3E20009352D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7943CB29DC3E20009352D8 /* ContentView.swift */; };
 		CC7943CE29DC3E21009352D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7943CD29DC3E21009352D8 /* Assets.xcassets */; };
 		CC7943D129DC3E21009352D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7943D029DC3E21009352D8 /* Preview Assets.xcassets */; };
 		CCC6473029EEB85C003060BF /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6472F29EEB85C003060BF /* NoteListView.swift */; };
@@ -19,7 +18,6 @@
 /* Begin PBXFileReference section */
 		CC7943C629DC3E20009352D8 /* MyNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7943C929DC3E20009352D8 /* MyNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNotesApp.swift; sourceTree = "<group>"; };
-		CC7943CB29DC3E20009352D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CC7943CD29DC3E21009352D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC7943D029DC3E21009352D8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CCC6472F29EEB85C003060BF /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 			children = (
 				CCC6472E29EEB84B003060BF /* view */,
 				CC7943C929DC3E20009352D8 /* MyNotesApp.swift */,
-				CC7943CB29DC3E20009352D8 /* ContentView.swift */,
 				CC7943CD29DC3E21009352D8 /* Assets.xcassets */,
 				CC7943CF29DC3E21009352D8 /* Preview Content */,
 			);
@@ -154,7 +151,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC7943CC29DC3E20009352D8 /* ContentView.swift in Sources */,
 				CC7943CA29DC3E20009352D8 /* MyNotesApp.swift in Sources */,
 				CCC6473229EEB88B003060BF /* AddNoteView.swift in Sources */,
 				CCC6473029EEB85C003060BF /* NoteListView.swift in Sources */,

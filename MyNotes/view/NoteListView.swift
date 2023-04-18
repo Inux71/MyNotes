@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NoteListView: View {
     @State private var _search: String = "";
+    var onNavigateToAddNoteView: () -> Void
     
     var body: some View {
         NavigationStack {
