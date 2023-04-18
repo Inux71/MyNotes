@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct NoteListView: View {
-    var onNavigateToAddNoteView: () -> Void
+    @State private var _search: String = "";
     
     var body: some View {
         VStack {
-            
+            List{
+                NavigationLink("Test", value: "edit")
+            }
         }
+        .navigationTitle("Notatki")
+        .navigationBarTitleDisplayMode(.large)
+        .searchable(text: $_search)
+        .toolbar {
+            NavigationLink(value: "add") {
+                Image(systemName: "doc.badge.plus")
+            }
+        }
+    }
+}
+
+struct NodeListView_Preview: PreviewProvider {
+    static var previews: some View {
+        NoteEditView()
     }
 }
