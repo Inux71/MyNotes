@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NoteListView: View {
+    var onNavigateToAddNoteView: () -> Void
+    
     var body: some View {
         VStack {
             
