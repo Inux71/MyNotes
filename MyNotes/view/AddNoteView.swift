@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddNoteView: View {
+    var onReturnToNteListView: () -> Void
+    
     @State private var title: String = "Title"
     
     @State private var noteContent: String = "This is some editable text..."
@@ -32,6 +34,6 @@ struct AddNoteView: View {
 
 struct AddNoteView_Preview: PreviewProvider{
     static var previews: some View{
-        AddNoteView()
+        AddNoteView(onReturnToNteListView: {})
     }
 }
