@@ -25,7 +25,7 @@ struct MyNotesApp: App {
     private func getView(for destination: String) -> AnyView {
         switch destination {
             case "add":
-                return AnyView(AddNoteView(onReturnToNteListView: {
+                return AnyView(AddNoteView(onReturnToNoteListView: {
                     self._path.removeLast()
                 }))
             case "preview":
