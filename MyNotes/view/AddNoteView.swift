@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddNoteView: View {
+    @EnvironmentObject var notesStore: NotesStore
     @State private var title: String = ""
     var onReturnToNoteListView: () -> Void
     
@@ -40,6 +41,7 @@ struct AddNoteView: View {
     
     private func saveNote(){
         print("Hello there")
+        notesStore.insert(note: Note(content:noteContent, title:title))
         onReturnToNoteListView()
     }
     
