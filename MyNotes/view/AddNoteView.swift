@@ -8,29 +8,40 @@
 import SwiftUI
 
 struct AddNoteView: View {
+    @State private var title: String = ""
     var onReturnToNteListView: () -> Void
     
-    @State private var title: String = "Title"
-    
-    @State private var noteContent: String = "This is some editable text..."
+    @State private var noteContent: String = ""
     
     var body: some View {
         VStack {
             TextField(
-                "Add title to your note...",
+                "Tytuł notatki",
                 text:$title).font(.custom("HelveticaNeue", size: 28))
                 //.frame(maxHeight: 34, alignment: .leading)
-                .padding(20)
+                .padding(15)
             
             TextEditor(
                 text: $noteContent).font(.custom("HelveticaNeue", size: 16))
                     .lineSpacing(5)
-                    .padding(20)
+                    .padding(15)
+                    
             
         }
+        .navigationTitle("Dodaj notatkę")
+        .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            Button(action: saveNote) {
+                Text("Zapisz")
+            }
+        }
     }
+    
 }
 
+private func saveNote(){
+    print("Hello there")
+}
 
 struct AddNoteView_Preview: PreviewProvider{
     static var previews: some View{
