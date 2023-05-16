@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct MyNotesApp: App {
     @State private var _path: [String] = []
+    @StateObject var notes = NotesStore()
     
     var body: some Scene {
         WindowGroup {
@@ -19,6 +20,7 @@ struct MyNotesApp: App {
                         self.getView(for: destination)
                     }
             }
+            .environmentObject(notes)
         }
     }
     
