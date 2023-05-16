@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct NoteListView: View {
+    @EnvironmentObject var notesStore: NotesStore
     @State private var _search: String = "";
     
     var body: some View {
         VStack {
-            List{
-                NavigationLink("Test", value: "preview")
+            List(notesStore.notes) { note in
+                NavigationLink(value: "add") {
+                    HStack {
+                        Text(note.title)
+                    }
+                }
             }
         }
         .navigationTitle("Notatki")
@@ -22,6 +27,9 @@ struct NoteListView: View {
         .toolbar {
             NavigationLink(value: "add") {
                 Image(systemName: "doc.badge.plus")
+            }
+            Button("Dodaj") {
+                notesStore.insert(note: Note(content: "XD", title: "Tytuł"))
             }
         }
     }
