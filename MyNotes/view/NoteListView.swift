@@ -34,9 +34,3 @@ struct NoteListView: View {
         }
     }
 }
-
-struct NodeListView_Preview: PreviewProvider {
-    static var previews: some View {
-        NoteEditView()
-    }
-}
