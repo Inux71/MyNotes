@@ -13,7 +13,7 @@ struct NoteListView: View {
     var body: some View {
         VStack {
             List{
-                NavigationLink("Test", value: "edit")
+                NavigationLink("Test", value: "preview")
             }
         }
         .navigationTitle("Notatki")
@@ -24,11 +24,5 @@ struct NoteListView: View {
                 Image(systemName: "doc.badge.plus")
             }
         }
-    }
-}
-
-struct NodeListView_Preview: PreviewProvider {
-    static var previews: some View {
-        NoteEditView()
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddNoteView: View {
     @State private var title: String = ""
+    var onReturnToNteListView: () -> Void
     
     @State private var noteContent: String = ""
     
@@ -44,6 +45,6 @@ private func saveNote(){
 
 struct AddNoteView_Preview: PreviewProvider{
     static var previews: some View{
-        AddNoteView()
+        AddNoteView(onReturnToNteListView: {})
     }
 }
