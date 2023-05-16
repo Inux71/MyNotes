@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct AddNoteView: View {
+    @EnvironmentObject var notesStore: NotesStore
     @State private var title: String = ""
-    var onReturnToNteListView: () -> Void
+    var onReturnToNoteListView: () -> Void
     
-    @State private var noteContent: String = ""
+    @State private var noteContent: String = "Treść notatki..."
     
     var body: some View {
         VStack {
@@ -19,32 +20,37 @@ struct AddNoteView: View {
                 "Tytuł notatki",
                 text:$title).font(.custom("HelveticaNeue", size: 28))
                 //.frame(maxHeight: 34, alignment: .leading)
-                .padding(15)
+                .padding(0)
             
             TextEditor(
                 text: $noteContent).font(.custom("HelveticaNeue", size: 16))
                     .lineSpacing(5)
-                    .padding(15)
+                    .padding(0)
                     
             
         }
-        .navigationTitle("Dodaj notatkę")
-        .navigationBarTitleDisplayMode(.large)
         .toolbar {
             Button(action: saveNote) {
                 Text("Zapisz")
             }
         }
+        .padding()
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Dodaj notatkę")
+    }
+    
+    private func saveNote(){
+        print("Hello there")
+        notesStore.insert(note: Note(content:noteContent, title:title))
+        onReturnToNoteListView()
     }
     
 }
 
-private func saveNote(){
-    print("Hello there")
-}
+
 
 struct AddNoteView_Preview: PreviewProvider{
     static var previews: some View{
-        AddNoteView(onReturnToNteListView: {})
+        AddNoteView(onReturnToNoteListView: {})
     }
 }
