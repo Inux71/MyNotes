@@ -12,23 +12,23 @@ struct AddNoteView: View {
     @State private var title: String = ""
     var onReturnToNoteListView: () -> Void
     
-    @State private var noteContent: String = "Treść notatki..."
+    @State private var noteContent: String = ""
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             TextField(
                 "Tytuł notatki",
-                text:$title).font(.custom("HelveticaNeue", size: 28))
+                text:$title).font(.title)
                 //.frame(maxHeight: 34, alignment: .leading)
                 .padding(0)
             
-            TextEditor(
-                text: $noteContent).font(.custom("HelveticaNeue", size: 16))
-                    .lineSpacing(5)
-                    .padding(0)
-                    
-            
+            VStack(alignment: .leading) {
+                TextField("Treść...", text: $noteContent, axis: .vertical)
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar {
             Button(action: saveNote) {
                 Text("Zapisz")
