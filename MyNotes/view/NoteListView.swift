@@ -13,11 +13,16 @@ struct NoteListView: View {
     
     var body: some View {
         VStack {
-            List(notesStore.notes) { note in
-                NavigationLink(value: "add") {
-                    HStack {
-                        Text(note.title)
+            List {
+                ForEach(notesStore.notes) {note in
+                    NavigationLink(value: "add") {
+                        HStack {
+                            Text(note.title)
+                        }
                     }
+                }
+                .onDelete { idx in
+                    notesStore.remove(offset: idx)
                 }
             }
         }
