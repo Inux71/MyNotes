@@ -19,6 +19,9 @@ struct NoteListView: View {
                         Text(note.title)
                     }
                 }
+                .onDelete { idx in
+                    notesStore.remove(offset: idx)
+                }
             }
         }
         .navigationTitle("Notatki")

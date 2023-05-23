@@ -18,4 +18,8 @@ class NotesStore: ObservableObject {
         notes.append(note)
         Storage.saveData(data: self.notes, forKey: "NOTES")
     }
+    
+    func remove(offset: IndexSet) {
+        notes.remove(atOffsets: offset)
+    }
 }
