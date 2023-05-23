@@ -14,7 +14,7 @@ struct NoteListView: View {
     var body: some View {
         VStack {
             List(notesStore.notes) { note in
-                NavigationLink(value: "add") {
+                NavigationLink(destination: NotePreviewView(note: note)) {
                     HStack {
                         Text(note.title)
                     }
@@ -27,9 +27,6 @@ struct NoteListView: View {
         .toolbar {
             NavigationLink(value: "add") {
                 Image(systemName: "doc.badge.plus")
-            }
-            Button("Dodaj") {
-                notesStore.insert(note: Note(content: "XD", title: "Tytuł"))
             }
         }
     }

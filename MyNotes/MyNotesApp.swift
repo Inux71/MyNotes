@@ -30,13 +30,13 @@ struct MyNotesApp: App {
                 return AnyView(AddNoteView(onReturnToNoteListView: {
                     self._path.removeLast()
                 }))
-            case "preview":
+            /*case "preview":
                 return AnyView(NotePreviewView(onNavigateToEditView: {
                     self._path.removeLast()
                     self._path.append("edit")
-                }))
-            case "edit":
-                return AnyView(NoteEditView())
+                }))*/
+            /*case "edit":
+                return AnyView(NoteEditView())*/
             default:
                 return AnyView(EmptyView())
         }

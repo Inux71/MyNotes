@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct NotePreviewView: View {
-    var onNavigateToEditView: () -> Void
+    var note: Note
     
     var body: some View {
-        ScrollView {
-            
+        VStack {
+            Text(self.note.content)
+                .font(.system(size: 16))
+            Spacer()
         }
-        .navigationTitle("Notatka 1")
+        .padding()
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("\(self.note.title) - podgląd")
         .toolbar {
             ToolbarItem(placement: .navigation) {
-                Button(action: self.onNavigateToEditView) {
+                NavigationLink(destination: NoteEditView(note: self.note)) {
                     Text("Edytuj")
                 }
             }

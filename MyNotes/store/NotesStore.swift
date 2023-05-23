@@ -8,9 +8,14 @@
 import Foundation
 
 class NotesStore: ObservableObject {
-    @Published var notes = [Note]()
+    @Published var notes: [Note]
+    
+    init() {
+        self.notes = Storage.getData(forKey: "NOTES")
+    }
     
     func insert(note: Note) {
         notes.append(note)
+        Storage.saveData(data: self.notes, forKey: "NOTES")
     }
 }
