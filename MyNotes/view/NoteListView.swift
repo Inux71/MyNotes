@@ -13,12 +13,10 @@ struct NoteListView: View {
     
     var body: some View {
         VStack {
-            List {
-                ForEach(notesStore.notes) {note in
-                    NavigationLink(value: "add") {
-                        HStack {
-                            Text(note.title)
-                        }
+            List(notesStore.notes) { note in
+                NavigationLink(destination: NotePreviewView(note: note)) {
+                    HStack {
+                        Text(note.title)
                     }
                 }
                 .onDelete { idx in
@@ -32,9 +30,6 @@ struct NoteListView: View {
         .toolbar {
             NavigationLink(value: "add") {
                 Image(systemName: "doc.badge.plus")
-            }
-            Button("Dodaj") {
-                notesStore.insert(note: Note(content: "XD", title: "Tytuł"))
             }
         }
     }
