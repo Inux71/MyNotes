@@ -11,14 +11,17 @@ struct NotePreviewView: View {
     var note: Note
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text(self.note.content)
                 .font(.system(size: 16))
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("\(self.note.title) - podgląd")
+        .navigationTitle("Podgląd - \(self.note.title)")
         .toolbar {
             ToolbarItem(placement: .navigation) {
                 NavigationLink(destination: NoteEditView(note: self.note)) {
