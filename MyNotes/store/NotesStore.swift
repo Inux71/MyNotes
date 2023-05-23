@@ -13,4 +13,8 @@ class NotesStore: ObservableObject {
     func insert(note: Note) {
         notes.append(note)
     }
+    
+    func remove(offset: IndexSet) {
+        notes.remove(atOffsets: offset)
+    }
 }
