@@ -9,22 +9,11 @@ import SwiftUI
 
 struct NoteListView: View {
     @EnvironmentObject var notesStore: NotesStore
-    @State private var _searchText: String = ""
-    
-    private var _searchedNotes: [Note] {
-        if self._searchText.isEmpty {
-            return self.notesStore.notes
-        } else {
-            return self.notesStore.notes.filter {
-                $0.title.contains(self._searchText)
-            }
-        }
-    }
 
     var body: some View {
         VStack {
             List {
-                ForEach(self._searchedNotes) { note in
+                ForEach(self.notesStore.notes) { note in
                     NavigationLink(destination: NotePreviewView(note: note)) {
                         HStack {
                             Text(note.title)
@@ -32,13 +21,12 @@ struct NoteListView: View {
                     }
                 }
                 .onDelete { idx in
-                    notesStore.remove(offset: idx)
+                    self.notesStore.remove(offset: idx)
                 }
             }
         }
         .navigationTitle("Notatki")
         .navigationBarTitleDisplayMode(.large)
-        .searchable(text: $_searchText)
         .toolbar {
             NavigationLink(value: "add") {
                 Image(systemName: "doc.badge.plus")

@@ -17,4 +17,10 @@ struct Note: Identifiable, Codable, Hashable {
         self.content = content
         self.title = title
     }
+    
+    init (id: UUID, content: String, title: String) {
+        self.id = id
+        self.content = content
+        self.title = title
+    }
 }
