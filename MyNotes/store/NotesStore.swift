@@ -23,4 +23,12 @@ class NotesStore: ObservableObject {
         notes.remove(atOffsets: offset)
         Storage.saveData(data: self.notes, forKey: "NOTES")
     }
+    
+    func update(note: Note) {
+        if let index = self.notes.firstIndex(where: { $0.id == note.id }) {
+            self.notes[index] = note
+        }
+        
+        Storage.saveData(data: self.notes, forKey: "NOTES")
+    }
 }
