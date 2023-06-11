@@ -29,7 +29,7 @@ struct NoteListView: View {
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             NavigationLink(value: "add") {
-                Image(systemName: "doc.badge.plus")
+                Text("Dodaj notatkę")
             }
         }
     }
