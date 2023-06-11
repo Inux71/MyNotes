@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NotePreviewView: View {
+    @State var noteEditVisible: Bool = false
+    
     var note: Note
     
     var body: some View {
@@ -24,7 +26,9 @@ struct NotePreviewView: View {
         .navigationTitle("Podgląd - \(self.note.title)")
         .toolbar {
             ToolbarItem(placement: .navigation) {
-                NavigationLink(destination: NoteEditView(note: self.note)) {
+                Button(action: {
+                    noteEditVisible.toggle()
+                }) {
                     Text("Edytuj")
                 }
             }
@@ -33,6 +37,11 @@ struct NotePreviewView: View {
                 Button(action: {}) {
                     Label("Pobierz", systemImage: "square.and.arrow.up")
                 }
+            }
+        }
+        .sheet(isPresented: $noteEditVisible) {
+            NavigationStack() {
+                NoteEditView(note: note)
             }
         }
     }
