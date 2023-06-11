@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NoteListView: View {
     @EnvironmentObject var notesStore: NotesStore
+    @State private var isPresentingConfirm: Bool = false
 
     var body: some View {
         VStack {
@@ -27,6 +28,14 @@ struct NoteListView: View {
                 .onDelete { idx in
                     self.notesStore.remove(offset: idx)
                 }
+                .onReceive(NotificationCenter.default.publisher(for: .deviceDidShakeNotification)) {_ in
+                    isPresentingConfirm = true
+                }
+            }.confirmationDialog("Usunąć wszystkie notatki?",isPresented: $isPresentingConfirm) {
+                Button("Usuń wszystkie notatki", role: .destructive) {
+                    self.notesStore.notes.removeAll()
+                }
+                Button("Anuluj", role: .cancel){}
             }
         }
         .navigationTitle("Notatki")
@@ -44,5 +53,18 @@ struct NoteListView: View {
                 }
             }
         }
+    }
+}
+
+
+extension NSNotification.Name {
+    public static let deviceDidShakeNotification = NSNotification.Name("MyDeviceDidShakeNotification")
+}
+
+
+extension UIWindow {
+    open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        super.motionEnded(motion, with: event)
+        NotificationCenter.default.post(name: .deviceDidShakeNotification, object: event)
     }
 }
