@@ -24,14 +24,14 @@ struct NoteListView: View {
                 .onDelete { idx in
                     self.notesStore.remove(offset: idx)
                 }
-                .onReceive(NotificationCenter.default.publisher(for: .deviceDidShakeNotification)) {
-                    _ in
+                .onReceive(NotificationCenter.default.publisher(for: .deviceDidShakeNotification)) {_ in
                     isPresentingConfirm = true
                 }
-            }.confirmationDialog("Delete all notes?",isPresented: $isPresentingConfirm) {
-                Button("Delete all notes", role: .destructive) {
+            }.confirmationDialog("Usunąć wszystkie notatki?",isPresented: $isPresentingConfirm) {
+                Button("Usuń wszystkie notatki", role: .destructive) {
                     self.notesStore.notes.removeAll()
                 }
+                Button("Anuluj", role: .cancel){}
             }
         }
         .navigationTitle("Notatki")
