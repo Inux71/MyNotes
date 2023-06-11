@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NoteEditView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var note: Note
     
     @EnvironmentObject var notesStore: NotesStore
@@ -20,7 +22,7 @@ struct NoteEditView: View {
             VStack(alignment: .leading) {
                 TextField(
                     "Tytuł notatki",
-                    text:$_title).font(.title)
+                    text:$_title).font(.system(size: 24).bold())
                     .padding(0)
                 
                 VStack(alignment: .leading) {
@@ -35,13 +37,15 @@ struct NoteEditView: View {
                     let updatedNote = Note(id: self.note.id, content: self._noteContent, title: self._title)
                     
                     self.notesStore.update(note: updatedNote)
+                    
+                    dismiss()
                 }) {
                     Text("Zapisz")
                 }
             }
             .padding()
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Dodaj notatkę")
+            .navigationTitle("Edytuj notatkę")
         }
         .onAppear() {
             self._title = self.note.title
