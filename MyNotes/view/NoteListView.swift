@@ -12,6 +12,10 @@ struct NoteListView: View {
 
     var body: some View {
         VStack {
+            if self.notesStore.notes.count == 0 {
+                Text("Brak notatek 😭")
+            }
+            
             List {
                 ForEach(self.notesStore.notes) { note in
                     NavigationLink(destination: NotePreviewView(note: note)) {
@@ -28,8 +32,16 @@ struct NoteListView: View {
         .navigationTitle("Notatki")
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
-            NavigationLink(value: "add") {
-                Text("Dodaj notatkę")
+            if self.notesStore.notes.count != 0 {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+            }
+            
+            ToolbarItem() {
+                NavigationLink(value: "add") {
+                    Image(systemName: "doc.badge.plus")
+                }
             }
         }
     }

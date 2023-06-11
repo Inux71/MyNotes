@@ -10,31 +10,32 @@ import SwiftUI
 struct AddNoteView: View {
     @EnvironmentObject var notesStore: NotesStore
     @State private var title: String = ""
+    @State private var noteContent: String = ""
+    @State private var isPrivate: Bool = false
+    
     var onReturnToNoteListView: () -> Void
     
-    @State private var noteContent: String = ""
-    
     var body: some View {
-        VStack(alignment: .leading) {
+        List {
             TextField(
                 "Tytuł notatki",
-                text:$title).font(.title)
-                //.frame(maxHeight: 34, alignment: .leading)
-                .padding(0)
+                text: $title
+            )
             
-            VStack(alignment: .leading) {
-                TextField("Treść...", text: $noteContent, axis: .vertical)
-                Spacer()
+            Section("Szczegóły") {
+                TextField("Treść", text: $noteContent, axis: .vertical)
+                    .frame(maxHeight: .infinity)
+                
+                Toggle(isOn: $isPrivate) {
+                    Text("Notatka prywatna")
+                }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar {
             Button(action: saveNote) {
                 Text("Zapisz")
             }
         }
-        .padding()
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Dodaj notatkę")
     }
