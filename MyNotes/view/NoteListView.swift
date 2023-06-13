@@ -9,8 +9,22 @@ import SwiftUI
 
 struct NoteListView: View {
     @EnvironmentObject var notesStore: NotesStore
+    
     @State private var isPresentingConfirm: Bool = false
-
+    @State private var _searchedText: String = ""
+    @State private var _isAlertPresented: Bool = false
+    @State private var _indexSet: IndexSet = IndexSet(integer: 0)
+    
+    private var _filteredNotes: [Note] {
+        if self._searchedText.isEmpty {
+            return self.notesStore.notes
+        } else {
+            return self.notesStore.notes.filter {
+                $0.title.contains(self._searchedText)
+            }
+        }
+    }
+    
     var body: some View {
         VStack {
             if self.notesStore.notes.count == 0 {
@@ -18,15 +32,25 @@ struct NoteListView: View {
             }
             
             List {
-                ForEach(self.notesStore.notes) { note in
+                ForEach(self._filteredNotes) { note in
                     NavigationLink(destination: NotePreviewView(note: note)) {
                         HStack {
                             Text(note.title)
                         }
                     }
+                    .foregroundColor(.yellow)
                 }
                 .onDelete { idx in
-                    self.notesStore.remove(offset: idx)
+                    self._indexSet = idx
+                    self._isAlertPresented = true
+                }
+                .alert("Czy na pewno usunąć?", isPresented: self.$_isAlertPresented) {
+                    Button("TAK", action: {
+                        self.notesStore.remove(offset: self._indexSet)
+                        self._isAlertPresented = false
+                    })
+                    
+                    Button("Nie", role: .cancel) {}
                 }
                 .onReceive(NotificationCenter.default.publisher(for: .deviceDidShakeNotification)) { _ in
                     isPresentingConfirm = true
@@ -39,18 +63,21 @@ struct NoteListView: View {
                 Button("Anuluj", role: .cancel) {}
             }
         }
+        .searchable(text: self.$_searchedText)
         .navigationTitle("Notatki")
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             if self.notesStore.notes.count != 0 {
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
+                        .foregroundColor(.yellow)
                 }
             }
             
             ToolbarItem() {
                 NavigationLink(destination: AddNoteView()) {
                     Text("Dodaj")
+                        .foregroundColor(.yellow)
                 }
             }
         }

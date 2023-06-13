@@ -30,6 +30,7 @@ struct AddNoteView: View {
         .toolbar {
             Button(action: saveNote) {
                 Text("Zapisz")
+                    .foregroundColor(.yellow)
             }
         }
         .navigationBarTitleDisplayMode(.inline)
