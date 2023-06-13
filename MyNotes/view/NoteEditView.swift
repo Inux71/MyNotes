@@ -8,22 +8,23 @@
 import SwiftUI
 
 struct NoteEditView: View {
-    @Environment(\.dismiss) private var dismiss
-    
-    var note: Note
+    @Environment(\.dismiss) private var dismiss: DismissAction
     
     @EnvironmentObject var notesStore: NotesStore
     
     @State private var _title: String = ""
     @State private var _noteContent: String = ""
     
+    var note: Note
+    
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
                 TextField(
                     "Tytuł notatki",
-                    text:$_title).font(.system(size: 24).bold())
-                    .padding(0)
+                    text:$_title).font(.system(size: 24).bold()
+                )
+                .padding(0)
                 
                 VStack(alignment: .leading) {
                     TextField("Treść...", text: $_noteContent, axis: .vertical)
@@ -34,7 +35,11 @@ struct NoteEditView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .toolbar {
                 Button(action: {
-                    let updatedNote = Note(id: self.note.id, content: self._noteContent, title: self._title)
+                    let updatedNote = Note(
+                        id: self.note.id,
+                        content: self._noteContent,
+                        title: self._title
+                    )
                     
                     self.notesStore.update(note: updatedNote)
                     

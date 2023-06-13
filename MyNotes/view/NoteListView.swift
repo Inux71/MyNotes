@@ -28,14 +28,15 @@ struct NoteListView: View {
                 .onDelete { idx in
                     self.notesStore.remove(offset: idx)
                 }
-                .onReceive(NotificationCenter.default.publisher(for: .deviceDidShakeNotification)) {_ in
+                .onReceive(NotificationCenter.default.publisher(for: .deviceDidShakeNotification)) { _ in
                     isPresentingConfirm = true
                 }
-            }.confirmationDialog("Usunąć wszystkie notatki?",isPresented: $isPresentingConfirm) {
+            }
+            .confirmationDialog("Usunąć wszystkie notatki?",isPresented: $isPresentingConfirm) {
                 Button("Usuń wszystkie notatki", role: .destructive) {
-                    self.notesStore.notes.removeAll()
+                    self.notesStore.clear()
                 }
-                Button("Anuluj", role: .cancel){}
+                Button("Anuluj", role: .cancel) {}
             }
         }
         .navigationTitle("Notatki")
@@ -48,8 +49,8 @@ struct NoteListView: View {
             }
             
             ToolbarItem() {
-                NavigationLink(value: "add") {
-                    Image(systemName: "doc.badge.plus")
+                NavigationLink(destination: AddNoteView()) {
+                    Text("Dodaj")
                 }
             }
         }

@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct AddNoteView: View {
+    @Environment(\.dismiss) private var dismiss: DismissAction
+    
     @EnvironmentObject var notesStore: NotesStore
+    
     @State private var title: String = ""
     @State private var noteContent: String = ""
-    @State private var isPrivate: Bool = false
-    
-    var onReturnToNoteListView: () -> Void
     
     var body: some View {
         List {
@@ -25,10 +25,6 @@ struct AddNoteView: View {
             Section("Szczegóły") {
                 TextField("Treść", text: $noteContent, axis: .vertical)
                     .frame(maxHeight: .infinity)
-                
-                Toggle(isOn: $isPrivate) {
-                    Text("Notatka prywatna")
-                }
             }
         }
         .toolbar {
@@ -40,18 +36,9 @@ struct AddNoteView: View {
         .navigationTitle("Dodaj notatkę")
     }
     
-    private func saveNote(){
-        print("Hello there")
+    private func saveNote() {
         notesStore.insert(note: Note(content:noteContent, title:title))
-        onReturnToNoteListView()
+        dismiss()
     }
     
-}
-
-
-
-struct AddNoteView_Preview: PreviewProvider{
-    static var previews: some View{
-        AddNoteView(onReturnToNoteListView: {})
-    }
 }

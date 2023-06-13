@@ -32,12 +32,6 @@ struct NotePreviewView: View {
                     Text("Edytuj")
                 }
             }
-            
-            ToolbarItem(placement: .bottomBar) {
-                Button(action: {}) {
-                    Label("Pobierz", systemImage: "square.and.arrow.up")
-                }
-            }
         }
         .sheet(isPresented: $noteEditVisible) {
             NavigationStack() {
