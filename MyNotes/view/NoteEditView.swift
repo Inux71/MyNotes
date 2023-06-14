@@ -14,6 +14,7 @@ struct NoteEditView: View {
     
     @State private var _title: String = ""
     @State private var _noteContent: String = ""
+    @State private var _editAlertVisible = false
     
     var note: Note
     
@@ -35,6 +36,22 @@ struct NoteEditView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .toolbar {
                 Button(action: {
+                    _editAlertVisible.toggle()
+                }) {
+                    Text("Zapisz")
+                }
+            }
+            .padding()
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Edytuj notatkę")
+            .alert("Czy na pewno chcesz zapisać notatkę?", isPresented: $_editAlertVisible, presenting: note) { note in
+                Button(role: .cancel) {
+                    _editAlertVisible.toggle()
+                } label: {
+                    Text("Anuluj")
+                }
+                
+                Button("Zapisz") {
                     let updatedNote = Note(
                         id: self.note.id,
                         content: self._noteContent,
@@ -44,13 +61,8 @@ struct NoteEditView: View {
                     self.notesStore.update(note: updatedNote)
                     
                     dismiss()
-                }) {
-                    Text("Zapisz")
                 }
             }
-            .padding()
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Edytuj notatkę")
         }
         .onAppear() {
             self._title = self.note.title

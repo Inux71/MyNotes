@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct NoteListView: View {
+    @Environment(\.editMode) var editMode
     @EnvironmentObject var notesStore: NotesStore
     @State private var isPresentingConfirm: Bool = false
-
+    
     var body: some View {
         VStack {
             if self.notesStore.notes.count == 0 {
@@ -20,7 +21,10 @@ struct NoteListView: View {
             List {
                 ForEach(self.notesStore.notes) { note in
                     NavigationLink(destination: NotePreviewView(note: note)) {
-                        HStack {
+                        HStack(spacing: 8.0) {
+                            if note.isPrivate {
+                                Image(systemName: "lock")
+                            }
                             Text(note.title)
                         }
                     }
@@ -31,6 +35,7 @@ struct NoteListView: View {
                 .onReceive(NotificationCenter.default.publisher(for: .deviceDidShakeNotification)) { _ in
                     isPresentingConfirm = true
                 }
+                .environment(\.editMode, editMode)
             }
             .confirmationDialog("Usunąć wszystkie notatki?",isPresented: $isPresentingConfirm) {
                 Button("Usuń wszystkie notatki", role: .destructive) {
@@ -44,7 +49,29 @@ struct NoteListView: View {
         .toolbar {
             if self.notesStore.notes.count != 0 {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
+                    Button(action: {
+                        withAnimation {
+                            guard let editMode = editMode else { return }
+                            
+                            switch editMode.wrappedValue {
+                            case .inactive:
+                                editMode.wrappedValue = .active
+                            case .active:
+                                editMode.wrappedValue = .inactive
+                            default:
+                                break
+                            }
+                        }
+                    }) {
+                        let isEditing = editMode?.wrappedValue.isEditing
+                        
+                        if let isEditing {
+                            Text(isEditing ? "Gotowe" : "Edytuj")
+                        } else {
+                            Text("")
+                        }
+                    }
+//                    EditButton()
                 }
             }
             

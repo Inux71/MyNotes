@@ -14,6 +14,7 @@ struct AddNoteView: View {
     
     @State private var title: String = ""
     @State private var noteContent: String = ""
+    @State private var isPrivate = false
     
     var body: some View {
         List {
@@ -25,6 +26,10 @@ struct AddNoteView: View {
             Section("Szczegóły") {
                 TextField("Treść", text: $noteContent, axis: .vertical)
                     .frame(maxHeight: .infinity)
+                
+                Toggle(isOn: $isPrivate) {
+                    Text("Prywatna")
+                }
             }
         }
         .toolbar {
@@ -37,7 +42,7 @@ struct AddNoteView: View {
     }
     
     private func saveNote() {
-        notesStore.insert(note: Note(content:noteContent, title:title))
+        notesStore.insert(note: Note(content:noteContent, title:title, isPrivate: isPrivate))
         dismiss()
     }
     
